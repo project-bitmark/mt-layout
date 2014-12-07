@@ -15,21 +15,29 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+    <link rel="stylesheet" id="editor-fonts-css"  href="//fonts.googleapis.com/css?family=Roboto+Condensed%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext" type="text/css" media="all" />
     <style>
       body {
         padding-top: 0px;
+        font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .navbar .img-responsive { max-height: 100%; }
       .navbar { min-height: 60px; border-bottom: 5px solid beige; }
-      .navbar-brand { height: 60px; padding: 15px 15px 15px 0; }
-      .navbar-nav > li > a { line-height: 30px; }
+      .navbar-brand { height: 60px; padding: 15px; }
+      .navbar-nav > li > a {
+        line-height: 30px; color: #262626;
+        font-weight: 600; font-size: 13px;
+      }
+      .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+        background-color: #fafafa;
+        border-bottom: 2px solid #262626; margin-bottom: -2px;
+      }
     </style>
   </head>
   <body>
 
     <nav class="navbar navbar-static-top" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
