@@ -87,7 +87,7 @@
 
       <div class="row">
 
-				<form role="form">
+				<form id="marking" role="form">
 				  <div class="form-group">
 				    <label for="marking-url">URL</label>
 				    <input type="url" class="form-control" id="marking-url" placeholder="Marking URL">
@@ -105,9 +105,9 @@
 				  </div>
           <div class="form-group">
             <label for="marking-destination">Recipient</label>
-            <input type="text" class="form-control" id="marking-title" placeholder="Marking Title">
+            <input type="text" class="form-control" id="marking-destination" placeholder="Recipient">
             <span class="help-block">
-              @username, email address, or an URL which is used to identify the recipient <span class="example">https://twitter.com/ProjectBitmark</span>
+              @username, email address, or an URL which is used to identify the recipient <span class="example">https://twitter.com/ProjectBitmark</span><br>
             </span>
           </div>
 				  <button type="submit" class="btn btn-default">Mark This</button>
@@ -121,5 +121,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
+    
+    <script>
+    var MT = MT || (function ($) {
+      var M = {};
+      
+      var session = window.sss = {
+        user: {preferredURI: 'http://markthis.org/@mark'},
+        storage: window.localStorage || (window.UserDataStorage && new UserDataStorage()) || 0,
+      };
+
+      MT_marking = M.marking = {
+        create: function(url, title, destination, amount) {
+          var data = {
+            why: { context: url, title: title },
+            destination: destination,
+            amount: amount,
+            timestamp: (new Date()).toISOString()
+          };
+          data.unit = 'http://schema.bitmark.co/units#mark';
+          data.source = session.user.preferredURI;
+          return data;
+        }
+      };
+      
+      return M;
+    })(jQuery);
+
+    $(document).ready(function($) {
+      $('#marking').submit(function() {
+        event.preventDefault();
+        console.log(MT.marking.create(
+          $('#marking-url').val(),
+          $('#marking-title').val(),
+          $('#marking-destination').val(),
+          $('#marking-value').val()
+        ));
+        return;
+      })
+    });
+    </script>
   </body>
 </html>
