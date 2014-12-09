@@ -33,6 +33,29 @@ Specifying the API in this manner allows third party scripts to submit via GET o
 * `size` | `data-size` | `medium`
 * `layout` | `data-layout` | `horizontal`
 
+## URL Processing
+
+URLs specified for `url`, `destination`, and `canonical` MUST be absolute URIs including the protocol part when sent over the HTTP Interface.
+
+URLs specified for `url`, `destination`, and `canonical` may be defined in HTML syntax as relative URIs, the button javascript will convert them to absolute URIs before sending to the Marking API.
+
+`destination` may also take the form of `@username` or `@alias`, when this is the case they will always be expanded by the API to the full URI form of `http(s)://markthis.org/@username`.
+
+All values may be any scheme of URI or IRI, although it is advised to keep:
+
+* `url` within the realms of commonly supported and recognisable scheme's. 
+* `destination` to schemes for which uri ownership can reasonaby be established.
+
+`destination` may be any scheme, for example:
+
+* `tel:+1-617-253-5702`
+* `http://www.w3.org/People/Berners-Lee/card#i`
+* `mailto:mark@bitmark.co`
+* `geo:37.786971,-122.399677`
+* `bitmark:bKCp4bgKcBpC53NLjohQQsuPVvw28L2iWv`
+
+The HTML API may also support CURIEs and Terms in the future, if it can be determined to cause no conflict with relative uri syntax e.g. `data-destination="bob"` which could refer to `/bob` or a term `bob`.
+
 ## GET
 
 All values passed url encoded within a query string
