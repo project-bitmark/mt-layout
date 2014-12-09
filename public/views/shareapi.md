@@ -1,6 +1,8 @@
 
 # Simple Sharing API
 
+**STATUS: UNSTABLE, IMPLEMENTING**
+
 This document (1 of 2) details the Simple Marking API used to power "MarkThis" Buttons on the web.
 
 The API has semantics similar to Facebook and Twitter's "Share Button APIs".
