@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="markings">
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+var links = [
+  {
+   "href": "http://einsteinpapers.press.princeton.edu/",
+   "title": "Huge collection of Einstein's papers, letters, correspondences, postcards, and notes available to view for free"
+  },
+  {
+   "href": "http://i.imgur.com/dgJ2DeO.png",
+   "title": "All scores from IMDb - Score vs. Vote count [OC]"
+  },
+  {
+   "href": "http://i.imgur.com/zWtFB0U.png",
+   "title": "Languages of Europe [2804×2439]"
+  },
+  {
+   "href": "http://www.fastcoexist.com/3038984/this-bio-drone-grows-itself-and-then-melts-into-a-puddle-of-sugar-when-its-done-flying?partner=rss",
+   "title": "This Bio-Drone Grows Itself, And Then Melts Into A Puddle Of Sugar When It's Done Flying"
+  },
+  {
+   "href": "http://th05.deviantart.net/fs71/PRE/i/2013/062/9/c/the_colossus_of_empire_city_by_mikemahle-d5wuet6.jpg",
+   "title": "The Colossus of Empire City by Mike Mahle"
+  },
+  {
+   "href": "http://imgur.com/gf6Wqvw",
+   "title": "The Undercity of Coruscant (Star Wars) always seemed Cyberpunkish to me"
+  },
+  {
+   "href": "https://silverskylabs.github.io/yakhak/",
+   "title": "Yik Hak - Smashing the Yak"
+  },
+  {
+   "href": "http://i.imgur.com/LCqDWmV.jpg",
+   "title": "Toronto IBM datacenter, 1963"
+  },
+  {
+   "href": "http://www.businessinsider.com/mcdonalds-same-store-sales-decline-2014-12",
+   "title": "McDonald's Is Losing America"
+  },
+  {
+   "href": "https://www.youtube.com/watch?v=lyV9Owe3ojA",
+   "title": "(old footage) Ron Paul makes standard libertarian arguments against the drug war that are now almost universally accepted to an absolutely hostile host/audience. Amazing how attitudes can change"
+  },
+  {
+   "href": "http://www.reddit.com/r/Nootropics/comments/2oqbeg/there_are_no_cheat_codes_to_life/",
+   "title": "\"There are no cheat codes to life.\""
+  },
+  {
+   "href": "http://markmanson.net/attention",
+   "title": "Everything is Extremist Porn: With a surplus of information, more flowing through our society than any of us could ever hope to process or understand, the new bottleneck is attention. We now live in an attention-based economy."
+  },
+  {
+   "href": "https://www.youtube.com/watch?v=CUhflgWvvoo&feature=youtu.be",
+   "title": "The next big frontier is the mind and brain - Full WIRED2014 talk"
+  },
+  {
+   "href": "http://www.reddit.com/r/FutureWhatIf/comments/2oqpmd/fwi_an_alien_spaceship_crashes_into_the_vatican/",
+   "title": "FWI: An alien spaceship crashes into the Vatican"
+  },
+  {
+   "href": "http://arxiv.org/abs/1412.1897",
+   "title": "Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images"
+  },
+  {
+   "href": "http://www.youtube.com/attribution_link?a=B4C4R_SpM6Q&u=%2Fwatch%3Fv%3DkR1lIOlg0CY%26feature%3Dshare",
+   "title": "High Speed Robot Hand Dexterity"
+  },
+  {
+   "href": "http://reason.com/blog/2014/12/08/richard-posner-privacy-is-mainly-about-c",
+   "title": "Federal Judge: Privacy is \"Mainly\" About Concealing Guilty Behavior"
+  },
+  {
+   "href": "https://www.youtube.com/watch?v=EfGD2qveGdQ",
+   "title": "Deepmind artificial intelligence @ FDOT14"
+  },
+  {
+   "href": "http://www.reddit.com/r/elonmusk/comments/2oqtwk/where_are_elons_video_responses_from_the_ama_he/",
+   "title": "Where are Elon's video responses from the AMA he did 3 years ago?"
+  },
+  {
+   "href": "http://www.buzzfeed.com/kierawrr/31-crazy-before-and-after-photos-of-korean-plastic-4gx1",
+   "title": "Plastic surgery is the most amazing thing..."
+  },
+  {
+   "href": "http://www.reddit.com/r/artificial/comments/2opgsc/deep_neural_networks_are_easily_fooled_high/",
+   "title": "Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images"
+  },
+  {
+   "href": "https://www.youtube.com/watch?v=9grWo5ZofmA",
+   "title": "Zoltan Istvan discussing transhumanism and his political campaign on Joe Rogan Experience podcast"
+  },
+  {
+   "href": "http://www.reddit.com/r/darknetplan/comments/2oo47q/servalproject_a_killer_app_for_cjdns/",
+   "title": "Serval-Project a killer app for CJDNS"
+  },
+  {
+   "href": "http://urbanmilwaukee.com/2014/12/08/data-wonk-the-rise-in-income-inequality/",
+   "title": "The Rise in Income Inequality"
+  },
+  {
+   "href": "http://www.ingenesist.com/general-info/decentralized-integration-of-complex-systems.html",
+   "title": "Decentralized Integration of Complex Systems"
+  }
+ ];
+ 
+var MT = MT || (function ($) {
+  var M = {};
+  
+  var session = window.sss = {
+    storage: window.localStorage || (window.UserDataStorage && new UserDataStorage()) || 0,
+  };
+
+  MT_history = M.history = {
+    fromHyperlink: function(ahref) {
+      var data = {
+        href: ahref.href,
+        title: ahref.text
+      };
+      return data;
+    },
+    get: function() {
+      if(session.storage.history) return JSON.parse(session.storage.history);
+      return [];
+    },
+    update: function(history) {
+      session.storage.history = JSON.stringify(history);      
+    },
+    add: function(ahref) {
+      var history = MT_history.get();
+      history.unshift(MT_history.fromHyperlink(ahref));
+      history = history.slice(0,5);
+      MT_history.update(history);
+      console.log(MT_history.get());
+    }
+  };
+  
+  return M;
+})(jQuery);
+
+ $(document).ready(function($) {
+   links.forEach(function(link) {
+     $('#markings').append( $('<p>').append(
+       $('<a>').text(link.title).attr('href', link.href)
+         .addClass('marking')
+         .click( function() {
+           MT.history.add(this);
+           return false;
+         })
+     ));
+   });
+ });
+</script>
+</body>
+</html>
