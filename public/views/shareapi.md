@@ -2,8 +2,8 @@
 # Simple Sharing API
 
 * query | data param | default
-* `url` | `data-url` | `rel=canonical` *required*
-* `destination` | `data-destination` | `rel=me`
+* `url` | `data-url` | `rel=canonical` or `document.location.href`
+* `destination` | `data-destination` | `rel=me` or *other authorship tokens we may understand*
 * `title` | `data-title` | `<title>`
 * `lang` | `data-lang` | `<html lang=x>` or `en`
 * `canonical` | `data-canonical` | `?url`
