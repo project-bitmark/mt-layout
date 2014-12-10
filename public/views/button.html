@@ -40,11 +40,13 @@
 
   var MT_button = M.button = function(_data, _request) {
         
-    var canonical = document.querySelector('[rel=canonical]'),
-    title = document.querySelector('title'),
-    lang = document.querySelector('html').getAttribute('lang'),
-    destination = document.querySelector('[rel=me]'),
-    serviceURI = _request || (/^http\:$/.test(window.location.protocol) ? 'http' : 'https') + '://markthis.org/share',
+    var qs = function(x) { return document.querySelector(x) },
+    scheme = (/^http\:$/.test(window.location.protocol) ? 'http' : 'https'),
+    canonical = qs('[rel=canonical]'),
+    title = qs('title'),
+    lang = qs('html').getAttribute('lang'), // assumes html element is always present, verify this
+    destination = qs('[rel=me]'),
+    serviceURI = _request || scheme + '://markthis.org/share',
     
     data = {
       url: _data.url || (canonical && canonical.href) || document.location.href || "",
