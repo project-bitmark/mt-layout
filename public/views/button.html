@@ -38,12 +38,13 @@
   
   var M = {};
 
-  var MT_button = M.button = function(_data) {
-    
+  var MT_button = M.button = function(_data, _request) {
+        
     var canonical = document.querySelector('[rel=canonical]'),
     title = document.querySelector('title'),
     lang = document.querySelector('html').getAttribute('lang'),
     destination = document.querySelector('[rel=me]'),
+    serviceURI = _request || (/^http\:$/.test(window.location.protocol) ? 'http' : 'https') + '://markthis.org/share',
     
     data = {
       url: _data.url || (canonical && canonical.href) || document.location.href || "",
@@ -58,6 +59,10 @@
     
     // setup canonical url
     data.canonical = _data.canonical || data.url;
+ 
+    serviceURI += '?' + $.param(data);
+    
+    console.log(serviceURI);
     
     return data;
   }
@@ -65,7 +70,7 @@
   $(document).ready(function() {
 	  $('.markthis-button').each(function() {
 	    var placeholder = $(this), data = $(this).data();
-	    console.log( MT_button(data) );
+	    console.log( MT_button(data, placeholder.href) );
 	  });
   });
 })(window, jQuery);
