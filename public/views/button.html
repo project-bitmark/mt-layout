@@ -54,10 +54,13 @@
       title: _data.title || (title && title.text) || "",
       lang: _data.lang || lang || "en",
       canonical: "",
-      tags: _data.tags || "",
+      tags: _data.tags || ""
+    },
+    
+    display = {
       size: _data.size || "medium",
       layout: _data.layout || "horizontal"
-    };
+    }
     
     // setup canonical url
     data.canonical = _data.canonical || data.url;

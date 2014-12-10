@@ -23,7 +23,7 @@ The API is called by submitting data by either GET or POST.  The HTML API detail
 
 Specifying the API in this manner allows third party scripts to submit via GET or POST, custom buttons to be created, and drop in javascript to turn links with `class="markthis-button"` in to actionable and familiar "markthis" buttons.
 
-## Variables
+## Service Arguments
 
 * query string | data param | default
 * `url` | `data-url` | `rel=canonical` or `document.location.href`
@@ -32,8 +32,15 @@ Specifying the API in this manner allows third party scripts to submit via GET o
 * `lang` | `data-lang` | `<html lang=x>` or `en`
 * `canonical` | `data-canonical` | `?url`
 * `tags` | `data-tags` | `none`
+
+## Display Arguments
+
+These are used by the HTML API to control display, and are ignored by the Share API service.
+
 * `size` | `data-size` | `medium`
 * `layout` | `data-layout` | `horizontal`
+
+`lang` is used by both the Share API Service, and by the HTML API to localize the language of button text.
 
 ## URL Processing
 
@@ -76,9 +83,7 @@ A JSON encoded object POSTed to `//markthis.org/share`
   title: "Project Bitmark on GitHub",
   lang: "en",
   canonical: "https://github.com/project-bitmark/",
-  tags: "bitmark, cryptocurrency, github",
-  size: "small",
-  layout: "vertical"
+  tags: "bitmark, cryptocurrency, github"
 }
 ```
 
