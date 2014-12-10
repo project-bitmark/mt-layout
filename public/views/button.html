@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MarkThis Demo Button</title>
+<link rel="canonical" href="http://markthis.org/api/button.html">
+</head>
+<body>
+
+  <a href="//markthis.org/share" class="markthis-button"
+     data-url="https://github.com/project-bitmark/?smid=tw-share"
+     data-destination="https://twitter.com/ProjectBitmark"
+     data-title="Project Bitmark on GitHub"
+     data-lang="en"
+     data-canonical="https://github.com/project-bitmark/"
+     data-tags="bitmark, cryptocurrency, github"
+     data-size="small"
+     data-layout="vertical">
+   MarkThis
+  </a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+(function(window, $) {
+
+  var testdata = {
+    url: "https://github.com/project-bitmark/?smid=tw-share",
+    destination: "https://twitter.com/ProjectBitmark",
+    title: "Project Bitmark on GitHub",
+    lang: "en",
+    canonical: "https://github.com/project-bitmark/",
+    tags: "bitmark, cryptocurrency, github",
+    size: "small",
+    layout: "vertical"
+  };
+  
+  var document = window.document;
+  
+  var M = {};
+
+  var MT_button = M.button = {
+    url: function(data) {
+      var canonical = document.querySelector('[rel=canonical]');
+      return data.url || (canonical && canonical.href) || document.location.href || "";
+    },
+    title: function(data) {
+      var title = document.querySelector('title');
+      return data.title || (title && title.text) || "";
+    },
+    lang: function(data) {
+      var lang = document.querySelector('html').getAttribute('lang');
+      return data.lang || lang || "en";
+    },
+  };
+  
+  $(document).ready(function() {
+	  $('.markthis-button').each(function() {
+	    var placeholder = $(this), data = $(this).data();
+	    console.log( MT_button.url(data) );
+	    console.log( MT_button.title(data) );
+	    console.log( MT_button.lang(data) );
+	  });
+  });
+})(window, jQuery);
+</script>
+</body>
+</html>
