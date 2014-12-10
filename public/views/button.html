@@ -53,17 +53,14 @@
       destination: _data.destination || (destination && destination.href) || "",
       title: _data.title || (title && title.text) || "",
       lang: _data.lang || lang || "",
-      canonical: "",
+      canonical: _data.canonical || "",
       tags: _data.tags || ""
     },
     
     display = {
       size: _data.size || "medium",
       layout: _data.layout || "horizontal"
-    }
-    
-    // setup canonical url
-    data.canonical = _data.canonical || data.url;
+    };
  
     serviceURI += '?' + $.param(data);
     
