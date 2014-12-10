@@ -29,7 +29,7 @@ Specifying the API in this manner allows third party scripts to submit via GET o
 * `url` | `data-url` | `rel=canonical` or `document.location.href`
 * `destination` | `data-destination` | `rel=me` or *other authorship tokens we may understand*
 * `title` | `data-title` | `<title>`
-* `lang` | `data-lang` | `<html lang=x>` or `en`
+* `lang` | `data-lang` | `<html lang=x>` or ``
 * `canonical` | `data-canonical` | `?url`
 * `tags` | `data-tags` | `none`
 
