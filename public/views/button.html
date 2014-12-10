@@ -38,27 +38,34 @@
   
   var M = {};
 
-  var MT_button = M.button = {
-    url: function(data) {
-      var canonical = document.querySelector('[rel=canonical]');
-      return data.url || (canonical && canonical.href) || document.location.href || "";
-    },
-    title: function(data) {
-      var title = document.querySelector('title');
-      return data.title || (title && title.text) || "";
-    },
-    lang: function(data) {
-      var lang = document.querySelector('html').getAttribute('lang');
-      return data.lang || lang || "en";
-    },
-  };
+  var MT_button = M.button = function(_data) {
+    
+    var canonical = document.querySelector('[rel=canonical]'),
+    title = document.querySelector('title'),
+    lang = document.querySelector('html').getAttribute('lang'),
+    destination = document.querySelector('[rel=me]'),
+    
+    data = {
+      url: _data.url || (canonical && canonical.href) || document.location.href || "",
+      destination: _data.destination || (destination && destination.href) || "",
+      title: _data.title || (title && title.text) || "",
+      lang: _data.lang || lang || "en",
+      canonical: "",
+      tags: _data.tags || "",
+      size: _data.size || "medium",
+      layout: _data.layout || "horizontal"
+    };
+    
+    // setup canonical url
+    data.canonical = _data.canonical || data.url;
+    
+    return data;
+  }
   
   $(document).ready(function() {
 	  $('.markthis-button').each(function() {
 	    var placeholder = $(this), data = $(this).data();
-	    console.log( MT_button.url(data) );
-	    console.log( MT_button.title(data) );
-	    console.log( MT_button.lang(data) );
+	    console.log( MT_button(data) );
 	  });
   });
 })(window, jQuery);
