@@ -40,7 +40,7 @@
   
   var M = {};
 
-  var MT_button = M.button = function(_data, _request) {
+  var MT_button = M.button = function(_data, _element) {
         
     var qs = function(x) { return document.querySelector(x) },
     scheme = (/^http\:$/.test(window.location.protocol) ? 'http' : 'https'),
@@ -48,7 +48,7 @@
     title = qs('title'),
     lang = qs('html').getAttribute('lang'), // assumes html element is always present, verify this
     destination = qs('[rel=me]'),
-    serviceURI = _request || scheme + '://markthis.org/share',
+    serviceURI = _element.href || scheme + '://markthis.org/share',
     
     data = {
       url: _data.url || (canonical && canonical.href) || document.location.href || "",
@@ -66,15 +66,17 @@
  
     serviceURI += '?' + $.param(data);
     
-    console.log(serviceURI);
+    _element.onclick = function() {
+      console.log(serviceURI);
+    }
     
     return data;
   }
   
   $(document).ready(function() {
 	  $('.markthis-button').each(function() {
-	    var placeholder = $(this), data = $(this).data();
-	    console.log( MT_button(data, placeholder.href) );
+	    var placeholder = $(this)[0], data = $(this).data();
+	    console.log( MT_button(data, placeholder) );
 	  });
   });
 })(window, jQuery);
