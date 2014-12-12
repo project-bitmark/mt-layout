@@ -6,8 +6,6 @@ MarkThis has a custom user authentication, encryption, and state system.
 ### Registration
 
 Registration consists of two steps:
-
- and send hashes of `password` and `2fa`
  
 **Registration: Step 1**
 
