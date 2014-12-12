@@ -420,11 +420,6 @@
           this.tryKey();     
         },
         tryKey: function() {
-          var message = M.message.create(session.key);
-          message.sign();
-          console.log(message.toString());
-          return;
-          // remove stub above
           M.message.profile(session.key, function(d) {
             if(d.success == 0) {
               alert(d.error.message);
@@ -481,6 +476,8 @@
         profile: function(keys, cb) {
           var data = this.create(keys);
           data.sign();
+          console.log(data.toString());
+          return;
           M_http.post(api_base+'profile', data, function(d) { cb(d);} );
         }
       };
