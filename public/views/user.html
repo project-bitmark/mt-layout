@@ -67,9 +67,14 @@
         background-color: white;
         border: 1px solid beige;
       }
-      .marking.image .marking-media {
+      .marking.image .media {
         padding: 5px;
-        
+      }
+      
+      .marking.image .media img {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
       }
       
       .marking .count, .marking time, .marking .domain {
@@ -112,21 +117,19 @@
         
           <article class="row marking image">
             <header class="marking-submitter">
-              <a href="/@DylanRhymaun" class="markee">@DylanRhymaun</a>
+              <a href="/@DylanRhymaun" class="destination">@DylanRhymaun</a>
               was marked by
-              <a href="/@MarkPfennig" class="marker">@MarkPfennig</a>
+              <a href="/@MarkPfennig" class="source">@MarkPfennig</a>
               and <a href="/marking/36be72e7" class="count">23 others</a>
-              <h4 class="marking-title">
+              <h4 class="title">
                 <a href="http://i.imgur.com/fq2KYze.jpg">A Rainy Night on the streets of Busan, South Korea</a>
               </h4>
             </header>
-            <div class="marking-body">
-	            <div class="marking-media">
-	              <a href="http://i.imgur.com/fq2KYze.jpg">
-	                <img class="img-responsive" src="http://i.imgur.com/fq2KYze.jpg">
-	              </a>
-	            </div>
-            </div>
+            <section class="media">
+              <a href="http://i.imgur.com/fq2KYze.jpg">
+                <img class="img-responsive" src="http://i.imgur.com/fq2KYze.jpg">
+              </a>
+            </section>
             <footer class="marking-info">
               Marked
               <time pubdate datetime="2014-14-15T12:15-08:00">14 hours ago</time>
